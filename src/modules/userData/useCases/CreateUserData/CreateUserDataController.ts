@@ -26,7 +26,7 @@ export class CreateUserDataController {
           area: "",
         },
       });
-      response.status(201).send();
+      response.status(200).send();
     } catch (error: any) {
       switch (error.message) {
         default:

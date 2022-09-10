@@ -9,7 +9,7 @@ export class CreateContactController {
 
     try {
       this.createContactUseCase.execute({ name, email, phoneNumber });
-      response.status(201).send();
+      response.status(200).send();
     } catch (error: any) {
       switch (error.message) {
         default:
