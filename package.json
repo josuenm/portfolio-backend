@@ -4,6 +4,7 @@
   "main": "src/server.ts",
   "license": "MIT",
   "scripts": {
+    "start": "node dist/service.js",
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/server.ts",
     "build": "tsc"
   },
