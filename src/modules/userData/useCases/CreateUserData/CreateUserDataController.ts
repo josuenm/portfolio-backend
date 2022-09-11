@@ -14,6 +14,7 @@ export class CreateUserDataController {
 
       this.createUserDataUseCase.execute({
         ...userData,
+        ip: ip || "",
         location: location || {
           range: "",
           country: "",
