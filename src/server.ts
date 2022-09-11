@@ -20,6 +20,10 @@ app.use(
   })
 );
 
+app.get("/api", (req, res) => {
+  res.json({ status: "Server is ok" });
+});
+
 app.use("/api", router);
 
 app.listen(PORT || 8080, () => console.log("Server is running 🚀"));
