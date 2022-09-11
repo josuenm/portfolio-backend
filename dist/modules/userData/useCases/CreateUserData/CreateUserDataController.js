@@ -24,7 +24,8 @@ class CreateUserDataController {
             try {
                 const ip = request.ip;
                 const location = geoip_lite_1.default.lookup(ip);
-                this.createUserDataUseCase.execute(Object.assign(Object.assign({}, userData), { ip: ip || "", location: location || {
+                console.log(ip);
+                this.createUserDataUseCase.execute(Object.assign(Object.assign({}, userData), { location: location || {
                         range: "",
                         country: "",
                         region: "",

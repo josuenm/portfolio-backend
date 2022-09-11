@@ -17,7 +17,6 @@ class CreateUserDataUseCase {
     execute({ description, layout, manufacturer, name, prerelease, product, ua, version, os, location, }) {
         return __awaiter(this, void 0, void 0, function* () {
             const response = yield this.userDataRepository.create({
-                ip: "",
                 description,
                 layout: layout || "",
                 manufacturer: manufacturer || "",

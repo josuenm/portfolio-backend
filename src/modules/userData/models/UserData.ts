@@ -15,7 +15,6 @@ const schema = new mongoose.Schema({
     family: { type: String },
     version: { type: String },
   },
-  ip: { type: String },
 
   location: {
     range: [String],

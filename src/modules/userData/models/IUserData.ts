@@ -13,7 +13,6 @@ export interface IUserData {
     family: string;
     version: string;
   };
-  ip: string;
 
   location: {
     range: string[];

@@ -12,9 +12,10 @@ export class CreateUserDataController {
       const ip = request.ip;
       const location = geoip.lookup(ip);
 
+      console.log(ip);
+
       this.createUserDataUseCase.execute({
         ...userData,
-        ip: ip || "",
         location: location || {
           range: "",
           country: "",

@@ -17,7 +17,6 @@ class CreateUserDataUseCase {
     location,
   }: IUserData): Promise<void> {
     const response = await this.userDataRepository.create({
-      ip: "",
       description,
       layout: layout || "",
       manufacturer: manufacturer || "",
