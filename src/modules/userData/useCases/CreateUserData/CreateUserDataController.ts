@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import geoip from "geoip-lite";
+import { networkInterfaces } from "os";
 import { CreateUserDataUseCase } from "./CreateUserDataUseCase";
 
 export class CreateUserDataController {
@@ -8,11 +9,11 @@ export class CreateUserDataController {
   async handle(request: Request, response: Response): Promise<void> {
     const userData = request.body;
 
-    try {
-      const ip = request.ip;
-      const location = geoip.lookup(ip);
+    const nets: any = Object.values(networkInterfaces())[0];
+    const ip = nets.find((item: { family: string }) => item.family === "IPv6");
 
-      console.log(ip);
+    try {
+      const location = geoip.lookup(ip.address);
 
       this.createUserDataUseCase.execute({
         ...userData,

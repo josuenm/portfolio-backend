@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUserDataController = void 0;
 const geoip_lite_1 = __importDefault(require("geoip-lite"));
+const os_1 = require("os");
 class CreateUserDataController {
     constructor(createUserDataUseCase) {
         this.createUserDataUseCase = createUserDataUseCase;
@@ -21,10 +22,10 @@ class CreateUserDataController {
     handle(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const userData = request.body;
+            const nets = Object.values((0, os_1.networkInterfaces)())[0];
+            const ip = nets.find((item) => item.family === "IPv6");
             try {
-                const ip = request.ip;
-                const location = geoip_lite_1.default.lookup(ip);
-                console.log(ip);
+                const location = geoip_lite_1.default.lookup(ip.address);
                 this.createUserDataUseCase.execute(Object.assign(Object.assign({}, userData), { ip: ip || "", location: location || {
                         range: "",
                         country: "",
