@@ -14,7 +14,7 @@ class CreateContactUseCase {
 
     const adminEmail = process.env.GMAIL_USER || "direct.josue@gmail.com";
 
-    const authorResponse = await this.contactRepository.sendEmail({
+    await this.contactRepository.sendEmail({
       from: `Novo contato <${email}>`,
       to: adminEmail,
       subject: `[Portfolio] ${name} te mandou um contato`,
@@ -42,14 +42,11 @@ class CreateContactUseCase {
       `,
     });
 
-    if (
-      contactResponse === "Contact Created" &&
-      authorResponse === "Email Sent"
-    ) {
-      return;
+    if (contactResponse !== "Contact Created") {
+      throw new Error("Error Server");
     }
 
-    throw new Error("Error Server");
+    return;
   }
 }
 
