@@ -12,11 +12,9 @@ class CreateContactUseCase {
       phoneNumber,
     });
 
-    const adminEmail = process.env.GMAIL_USER || "direct.josue@gmail.com";
-
-    await this.contactRepository.sendEmail({
+    const adminEmail = await this.contactRepository.sendEmail({
       from: `Novo contato <${email}>`,
-      to: adminEmail,
+      to: process.env.GMAIL_USER || "direct.josue@gmail.com",
       subject: `[Portfolio] ${name} te mandou um contato`,
       html: `
         <div>
@@ -30,7 +28,7 @@ class CreateContactUseCase {
       `,
     });
 
-    await this.contactRepository.sendEmail({
+    const customerEmail = await this.contactRepository.sendEmail({
       from: `Contato Enviado <${email}>`,
       to: email,
       subject: `Seu contato foi enviado com sucesso para o desenvolvedor Josué`,
@@ -42,7 +40,11 @@ class CreateContactUseCase {
       `,
     });
 
-    if (contactResponse !== "Contact Created") {
+    if (
+      contactResponse !== "Contact Created" &&
+      customerEmail !== "Email Sent" &&
+      adminEmail !== "Email Sent"
+    ) {
       throw new Error("Error Server");
     }
 
