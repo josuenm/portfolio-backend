@@ -4,3 +4,10 @@ export interface IContact {
   email: string;
   phoneNumber: string;
 }
+
+export interface IEmail {
+  from: string;
+  to: string;
+  subject: string;
+  html: string;
+}
