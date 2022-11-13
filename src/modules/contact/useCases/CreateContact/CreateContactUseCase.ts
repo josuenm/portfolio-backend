@@ -12,9 +12,11 @@ class CreateContactUseCase {
       phoneNumber,
     });
 
+    const adminEmail = process.env.GMAIL_USER || "direct.josue@gmail.com";
+
     const authorResponse = await this.contactRepository.sendEmail({
       from: `Novo contato <${email}>`,
-      to: `${process.env.GMAIL_USER}`,
+      to: adminEmail,
       subject: `[Portfolio] ${name} te mandou um contato`,
       html: `
         <div>
