@@ -14,7 +14,7 @@ class CreateContactUseCase {
 
     const adminEmail = await this.contactRepository.sendEmail({
       from: `Novo contato <${email}>`,
-      to: process.env.GMAIL_USER || "direct.josue@gmail.com",
+      to: "direct.josue@gmail.com",
       subject: `[Portfolio] ${name} te mandou um contato`,
       html: `
         <div>
@@ -29,7 +29,7 @@ class CreateContactUseCase {
     });
 
     const customerEmail = await this.contactRepository.sendEmail({
-      from: `Contato Enviado <${email}>`,
+      from: "Contato Enviado <direct.josue@gmail.com>",
       to: email,
       subject: `Seu contato foi enviado com sucesso para o desenvolvedor Josué`,
       html: `
