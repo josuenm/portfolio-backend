@@ -13,7 +13,7 @@ class CreateContactUseCase {
     });
 
     const authorResponse = await this.contactRepository.sendEmail({
-      from: `Novo contato <${process.env.GMAIL_USER}>`,
+      from: `Novo contato <${email}>`,
       to: `${process.env.GMAIL_USER}`,
       subject: `[Portfolio] ${name} te mandou um contato`,
       html: `
@@ -29,7 +29,7 @@ class CreateContactUseCase {
     });
 
     await this.contactRepository.sendEmail({
-      from: `Contato Enviado <${process.env.GMAIL_USER}>`,
+      from: `Contato Enviado <${email}>`,
       to: email,
       subject: `Seu contato foi enviado com sucesso para o desenvolvedor Josué`,
       html: `
